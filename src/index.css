@@ -15,53 +15,58 @@
   }
 }
 
-@keyframes bounceIn {
+@keyframes spinAround {
   0% {
+    transform: rotateY(90deg);
     opacity: 0;
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(1.1);
   }
   100% {
+    transform: rotateY(0deg);
     opacity: 1;
-    transform: scale(1);
   }
 }
 
 @keyframes moveHorizontal {
   0% {
-    transform: translateX(0);
+    transform: translateX(-10px);
   }
   50% {
-    transform: translateX(-20px);
+    transform: translateX(10px);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(-10px);
   }
 }
 
-@keyframes moveToBottom {
-  from {
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
     transform: translateY(0);
   }
-  to {
-    transform: translateY(200px);
-  }
-}
-
-.animate-moveHorizontal {
-  animation: moveHorizontal 8s ease-in-out infinite;
 }
 
 .animate-fadeInUp {
   animation: fadeInUp 1s ease-out forwards;
 }
 
-.animate-bounceIn {
-  animation: bounceIn 0.8s ease-out forwards;
+.animate-spinAround {
+  animation: spinAround 0.5s ease-out;
 }
 
-.animate-moveToBottom {
-  animation: moveToBottom 1s ease-out forwards 2.5s;
+.animate-moveHorizontal {
+  animation: moveHorizontal 3s infinite ease-in-out;
+}
+
+.animate-fadeSlide {
+  animation: fadeSlide 0.5s ease-in-out;
+}
+
+/* Ensure buttons are clickable */
+.slider-button {
+  z-index: 10;
+  pointer-events: auto;
 }

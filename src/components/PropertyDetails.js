@@ -4,7 +4,7 @@ function PropertyDetails() {
   return (
     <div className="bg-white p-6 rounded shadow">
       <h2 className="text-2xl font-semibold mb-4">Помещение</h2>
-      <p className="mb-2"><strong>Address:</strong> город Минсе, улица Петра Мстиславца 1-14</p>
+      <p className="mb-2"><strong>Address:</strong> город Минсе, улица Петра Мстиславца 1</p>
       <p className="mb-2"><strong>Цена</strong> 2200$ м2</p>
       <p className="mb-2"><strong>Санузел</strong> 1</p>
       <p className="mb-2"><strong>Вентиляция, полы с обогревом</strong></p>
