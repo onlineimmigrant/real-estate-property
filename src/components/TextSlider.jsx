@@ -95,7 +95,7 @@ function TextSlider({ lines }) {
           </div>
         ))}
       </div>
-      <div className="flex justify-between mt-8 space-x-4">
+      <div className="flex justify-between  space-x-4">
         <button
           onClick={goToPrev}
           className="slider-button text-xl bg-gray-400 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-gray-100 hover:text-gray-800 transition-colors"

@@ -14,8 +14,9 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines }) {
       title = 'Адрес';
       content = (
         <>
+         <Map />
           <TextSlider lines={whereLines} />
-          <Map />
+         
         </>
       );
       break;
