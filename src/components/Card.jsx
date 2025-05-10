@@ -103,7 +103,7 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-transparent flex items-center justify-center z-30">
+    <div className="-mx-4 fixed inset-0 bg-transparent flex items-center justify-center z-30">
       <div className="bg-white p-6 sm:p-8 sm:rounded-xl h-full sm:h-4/5 w-full sm:max-w-3xl mx-4 shadow-2xl animate-spinAround relative flex flex-col">
         <button
           onClick={closeSlider}

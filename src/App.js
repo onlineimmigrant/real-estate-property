@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet'; // For dynamic meta tags
 import HeroSection from './components/HeroSection';
 import Card from './components/Card';
 import Header from './components/Header';
@@ -56,23 +57,106 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const whereLines = ['Беларусь, Минск, Петра Мстиславца 1-121, 220114', 'Район Национальной Библиотеки РБ (100м), Жилой комплекс "Маяк Минска" '];
+  const whereLines = [
+    'Беларусь, Минск, Петра Мстиславца 1-121, 220114',
+    'Район Национальной Библиотеки РБ (100м), Жилой комплекс "Маяк Минска"',
+  ];
   const aboutLines = [
     'Количество комнат: 4',
     'Санузел, мини-кухня',
     'Площадь: 102 м2',
-    'Лифт для маломобильных груп населения',
+    'Лифт для маломобильных групп населения',
   ];
   const valueLines = [
     'Недвижимость с действующим бизнесом',
-    'Современный дизайн и высококачественные материалы: износостойкая венецианская штукатурка, премим плитка',
-    'Многофункциональсть: салон услуг (красоты, парикмахерская), торговля, офис', 
-    "Тепловая завеса, кондиционирование, вентиляция, водяной теплый пол, электроосвещение-класса люкс",
+    'Современный дизайн и высококачественные материалы: износостойкая венецианская штукатурка, премиум плитка',
+    'Многофункциональность: салон услуг (красоты, парикмахерская), торговля, офис',
+    'Тепловая завеса, кондиционирование, вентиляция, водяной теплый пол, электроосвещение-класса люкс',
     'Прямая продажа от собственника, без комиссии',
   ];
 
+  // Dynamically get the current URL
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://example.com';
+
   return (
     <div className="bg-gray-50 font-sans">
+      {/* SEO Meta Tags and Structured Data */}
+      <Helmet>
+        <title>Премиум недвижимость в Минске | Петра Мстиславца 1</title>
+        <meta
+          name="description"
+          content="Премиум помещение 102 м² с отдельным входом для салона, офиса или практики в центре Минска, Маяк Минска. Цена: $2200/м²."
+        />
+        <meta
+          name="keywords"
+          content="премиум недвижимость Минск, Петра Мстиславца 1, салон красоты, офис, Маяк Минска, коммерческая недвижимость"
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={currentUrl} />
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="Премиум коммерческое помещение 102 м² в Минске"
+        />
+        <meta
+          property="og:description"
+          content="Помещение с отдельным входом для салона, офиса или врачебной практики в элитном районе Минска, Маяк Минска. Цена: $2200/м²."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={currentUrl} />
+        <meta
+          property="og:image"
+          content={`${currentUrl}/images/property.jpg`}
+        />
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Премиум помещение 102 м² в Минске"
+        />
+        <meta
+          name="twitter:description"
+          content="Элитное помещение для бизнеса в центре Минска, Маяк Минска. Цена: $2200/м²."
+        />
+        <meta
+          name="twitter:image"
+          content={`${currentUrl}/images/property.jpg`}
+        />
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'RealEstateListing',
+            name: 'Премиум коммерческое помещение 102 м², Петра Мстиславца 1, Минск',
+            description:
+              'Премиум помещение с отдельным входом для салона красоты, услуг, офиса или врачебной практики в элитном районе Минска, Маяк Минска. Цена: $2200/м².',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Петра Мстиславца 1-121',
+              addressLocality: 'Минск',
+              postalCode: '220114',
+              addressCountry: 'BY',
+            },
+            floorSize: {
+              '@type': 'QuantitativeValue',
+              value: 102,
+              unitCode: 'MTK',
+            },
+            offers: {
+              '@type': 'Offer',
+              price: 224400,
+              priceCurrency: 'USD',
+              availability: 'https://schema.org/InStock',
+              seller: {
+                '@type': 'Person',
+                name: 'Прямая продажа от собственника',
+              },
+            },
+          })}
+        </script>
+      </Helmet>
+
+      {/* Main Content */}
       <HeroSection
         showHero={showHero}
         showButtons={showButtons}
@@ -80,20 +164,24 @@ function App() {
         scrollToGallery={scrollToGallery}
       />
       {activeSlider && (
-        <Card
-          type={activeSlider}
-          closeSlider={closeSlider}
-          whereLines={whereLines}
-          aboutLines={aboutLines}
-          valueLines={valueLines}
-        />
+        <div className="w-full">
+          <Card
+            type={activeSlider}
+            closeSlider={closeSlider}
+            whereLines={whereLines}
+            aboutLines={aboutLines}
+            valueLines={valueLines}
+          />
+        </div>
       )}
       <Header
         showNavbar={showNavbar}
         resetToStart={resetToStart}
         scrollToGallery={scrollToGallery}
       />
-      <MainContent />
+      <main id="main-content">
+        <MainContent />
+      </main>
       <Footer />
     </div>
   );

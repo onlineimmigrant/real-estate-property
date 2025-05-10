@@ -71,7 +71,7 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
             </div>
           )}
         </div>
-        <div className="text-center mb-32">
+        <div className="text-center mb-16">
           <h2
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 animate-fadeInUp drop-shadow-lg"
             style={{ animationDelay: '2s' }}

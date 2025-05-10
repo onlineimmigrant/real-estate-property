@@ -49,8 +49,8 @@ const PriceDeclaration = () => {
   }, []);
 
   return (
-    <div className="py-4 px-4 sm:px-6 text-gray-800">
-      <p className="text-base text-gray-700 mb-4">
+    <div className="py-4 text-gray-800">
+      <p className="text-base text-gray-700 mb-8">
         В соответствии с законодательством Беларуси сделки проводятся только в белорусских рублях (BYN). Для удобства расчета стоимости помещения используется доллар США (USD). Также предоставляются эквиваленты в российских рублях (RUB) и евро (EUR) для оценки цены.
       </p>
       {error && (
@@ -74,7 +74,7 @@ const PriceDeclaration = () => {
         ))}
       </div>
       <div className="mt-8 flex justify-center">
-        <div className="bg-white border border-gray-200 rounded-lg sm:shadow-md p-6 w-full text-center">
+        <div className="bg-white border border-gray-200 rounded-lg sm:shadow-md p-6 pb-12 w-full text-center">
           <div className="mb-4">
             <p className="text-3xl font-semibold text-teal-600">
               {prices[currency].symbol}
