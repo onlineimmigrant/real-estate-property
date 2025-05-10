@@ -1,130 +1,150 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
+import { Cloudinary } from '@cloudinary/url-gen';
+import { AdvancedImage, AdvancedVideo } from '@cloudinary/react';
+import PropTypes from 'prop-types';
 
-function TextSlider({ lines }) {
+const TextSlider = ({ lines = [], resources = [] }) => {
   const [currentLine, setCurrentLine] = useState(0);
-  const timerRef = useRef(null);
+  const cld = new Cloudinary({ cloud: { cloudName: 'dzagcqrbp' } });
 
+  // Debug logging
   useEffect(() => {
     console.log('TextSlider lines:', lines);
-  }, [lines]);
+    console.log('TextSlider resources:', resources);
+  }, [lines, resources]);
 
-  useEffect(() => {
-    if (lines.length > 0) {
-      timerRef.current = setInterval(() => {
-        setCurrentLine((prev) => {
-          const next = (prev + 1) % lines.length;
-          console.log('Auto-cycle to:', next);
-          return next;
-        });
-      }, 4000);
-    }
-    return () => {
-      console.log('Clearing timer');
-      clearInterval(timerRef.current);
-    };
-  }, [lines]);
+  // Navigation handlers
+  const goToPrev = useCallback(() => {
+    setCurrentLine((prev) => (prev - 1 + lines.length) % lines.length);
+  }, [lines.length]);
 
-  const goToPrev = () => {
-    console.log('Prev clicked, current:', currentLine);
-    clearInterval(timerRef.current);
-    setCurrentLine((prev) => {
-      const next = (prev - 1 + lines.length) % lines.length;
-      console.log('Set to prev:', next);
-      return next;
-    });
-    if (lines.length > 0) {
-      timerRef.current = setInterval(() => {
-        setCurrentLine((prev) => {
-          const next = (prev + 1) % lines.length;
-          console.log('Auto-cycle to:', next);
-          return next;
-        });
-      }, 4000);
-    }
-  };
+  const goToNext = useCallback(() => {
+    setCurrentLine((prev) => (prev + 1) % lines.length);
+  }, [lines.length]);
 
-  const goToNext = () => {
-    console.log('Next clicked, current:', currentLine);
-    clearInterval(timerRef.current);
-    setCurrentLine((prev) => {
-      const next = (prev + 1) % lines.length;
-      console.log('Set to next:', next);
-      return next;
-    });
-    if (lines.length > 0) {
-      timerRef.current = setInterval(() => {
-        setCurrentLine((prev) => {
-          const next = (prev + 1) % lines.length;
-          console.log('Auto-cycle to:', next);
-          return next;
-        });
-      }, 4000);
-    }
-  };
-
-  const goToLine = (index) => {
-    console.log('Dot clicked, index:', index);
-    clearInterval(timerRef.current);
+  const goToLine = useCallback((index) => {
     setCurrentLine(index);
-    if (lines.length > 0) {
-      timerRef.current = setInterval(() => {
-        setCurrentLine((prev) => {
-          const next = (prev + 1) % lines.length;
-          console.log('Auto-cycle to:', next);
-          return next;
-        });
-      }, 4000);
-    }
-  };
+  }, []);
 
-  if (!lines || lines.length === 0) {
-    return <p className="text-gray-600">No content available</p>;
+  // Get media for current line
+  const getMediaForLine = useCallback(
+    (line) => {
+      if (!resources?.length || !line) return [];
+      return line.object_type === 'general'
+        ? resources
+        : resources.filter((item) => item.object_type === line.object_type);
+    },
+    [resources]
+  );
+
+  if (!lines?.length) {
+    return <p className="text-gray-600 text-center">No content available</p>;
   }
 
+  // Determine min-height based on media presence for the current line
+  const hasMedia = getMediaForLine(lines[currentLine]).length > 0;
+  const minHeightClass = hasMedia ? 'min-h-64' : 'min-h-12';
+
   return (
-    <div className="relative">
-      <div className="h-24 flex items-center">
-        {lines.map((line, index) => (
+    <div className="relative w-full mx-auto">
+      {/* Content wrapper with dynamic min-height */}
+      <div className={`relative ${minHeightClass}`}>
+        {lines.map((item, index) => (
           <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-500 animate-fadeSlide ${
-              index === currentLine ? 'opacity-100' : 'opacity-0'
-            }`}
+            key={item.id}
+            className={`absolute w-full top-0 transition-opacity duration-500 ${
+              index === currentLine ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            } flex flex-col items-center space-y-4`}
+            role="tabpanel"
+            aria-hidden={index !== currentLine}
           >
-            <p className="text-gray-600 leading-relaxed text-xl">{line}</p>
+            {/* Text content */}
+            <p className="text-gray-600 leading-relaxed text-lg text-center">{item.line}</p>
+
+            {/* Media gallery */}
+            {getMediaForLine(item).length > 0 && (
+              <div className="flex flex-row space-x-2 overflow-x-auto snap-x snap-mandatory py-2 w-full  scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+                {getMediaForLine(item).map((mediaItem, mediaIndex) => (
+                  <div key={mediaItem.public_id} className="flex-shrink-0 snap-center">
+                    {mediaItem.resource_type === 'video' ? (
+                      <AdvancedVideo
+                        cldVid={cld.video(mediaItem.public_id).quality('auto').format('mp4')}
+                        controls
+                        className="h-48 w-auto rounded-lg object-cover"
+                        onError={() => console.error('Video load failed:', mediaItem.public_id)}
+                      />
+                    ) : (
+                      <AdvancedImage
+                        cldImg={cld.image(mediaItem.public_id).quality('auto').format('auto')}
+                        className="h-48 w-auto rounded-lg object-cover"
+                        alt={`Interior image ${mediaIndex + 1}`}
+                        loading={mediaIndex === 0 ? 'eager' : 'lazy'}
+                        onError={() => console.error('Image load failed:', mediaItem.public_id)}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
-      <div className="flex justify-between  space-x-4">
+
+      {/* Navigation controls */}
+      <div className="flex justify-between items-center space-x-3 mt-4">
         <button
           onClick={goToPrev}
-          className="slider-button text-xl bg-gray-400 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-gray-100 hover:text-gray-800 transition-colors"
-          aria-label="Previous text line"
+          className="slider-button text-lg bg-gray-400 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-500 transition-colors disabled:opacity-50"
+          aria-label="Previous slide"
+          disabled={lines.length <= 1}
         >
           ←
         </button>
         <button
           onClick={goToNext}
-          className="slider-button text-xl bg-teal-600 text-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-teal-700 transition-colors"
-          aria-label="Next text line"
+          className="slider-button text-lg bg-teal-600 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-teal-700 transition-colors disabled:opacity-50"
+          aria-label="Next slide"
+          disabled={lines.length <= 1}
         >
           →
         </button>
       </div>
-      <div className="flex justify-center mt-2 space-x-2">
+
+      {/* Navigation dots */}
+      <div className="flex justify-center mt-2 space-x-1.5">
         {lines.map((_, index) => (
           <button
-            key={index}
+            key={lines[index].id}
             onClick={() => goToLine(index)}
-            className={`w-2 h-2 rounded-full ${
+            className={`w-2 h-2 rounded-full transition-colors ${
               index === currentLine ? 'bg-teal-600' : 'bg-gray-400'
-            }`}
-            aria-label={`Go to text line ${index + 1}`}
-          ></button>
+            } hover:bg-teal-500`}
+            aria-label={`Go to slide ${index + 1}`}
+            aria-current={index === currentLine}
+          />
         ))}
       </div>
     </div>
   );
-}
+};
 
-export default TextSlider;
+// PropTypes for type checking
+TextSlider.propTypes = {
+  lines: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      line: PropTypes.string.isRequired,
+      object_type: PropTypes.string,
+    })
+  ),
+  resources: PropTypes.arrayOf(
+    PropTypes.shape({
+      public_id: PropTypes.string.isRequired,
+      resource_type: PropTypes.string.isRequired,
+      object_type: PropTypes.string,
+    })
+  ),
+};
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(TextSlider);

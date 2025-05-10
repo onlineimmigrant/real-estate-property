@@ -32,7 +32,7 @@ function HeroContent({ showButtons, openSlider, scrollToGallery, openVideoModal 
                 style={{ animationDelay: '0.9s' }}
                 aria-label="Перейти к галерее"
               >
-                Галерея
+                Фото, Видео
               </button>
               <button
                 onClick={() => openSlider('where')}
@@ -40,7 +40,7 @@ function HeroContent({ showButtons, openSlider, scrollToGallery, openVideoModal 
                 style={{ animationDelay: '0.6s' }}
                 aria-label="Открыть информацию об адресе"
               >
-                Адрес
+                Расположение
               </button>
             </div>
             <button

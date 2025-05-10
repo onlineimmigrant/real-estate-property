@@ -5,92 +5,110 @@
        
       {
         "public_id": "fdnaj1skiohqpipsibbz",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "benefit"
       },
       {
         "public_id": "bumggctpdxw7fefpf5sv",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "kitchen"
       },
       {
         "public_id": "wpndvwt0o2cy3dysxfr0",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "z4yanhxizt8iqkllrlp0",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "z4yanhxizt8iqkllrlp0",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "rdwblzmzdc6gfo7y06vx",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "w0apohhrqcuzkxa0pjan",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "ivat2eoawainmfkqaa9j",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "ldoajkgcwkebqvaczxm8",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "mnhspf8dluddbz5g4w77",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "m9fmshyhhwmn8caka7a9",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "unjg1gfcypoa1h8v65iu",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "m6vhq7nm0yw2fl5jo0lr",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "o4nnmygze4q9rn5h0eme",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "j1419lxegv7rat4gwi2m",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "j1419lxegv7rat4gwi2m",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
       {
         "public_id": "lq9tvcvfcbo0yszedhk0",
-        "resource_type": "image"
+        "resource_type": "image",
+        "object_type": "general"
       },
-      {
-        "public_id": "olxsqkop6tcidp2sq73x",
-        "resource_type": "image"
-      },
+
       {
         "public_id": "bmovy3i3i43kts5wa11u",
-        "resource_type": "video"
+        "resource_type": "video",
+        "object_type": "general"
       },
       {
         "public_id": "zzfbsdokpipcbg2pd33a",
-        "resource_type": "video"
+        "resource_type": "video",
+        "object_type": "general"
       },
       {
         "public_id": "zzfbsdokpipcbg2pd33a",
-        "resource_type": "video"
+        "resource_type": "video",
+        "object_type": "general"
       },
 
   {
     "public_id": "huewc0towmfbgdx1rkub",
-    "resource_type": "video"
+    "resource_type": "video",
+    "object_type": "general"
   }
     ]
   }

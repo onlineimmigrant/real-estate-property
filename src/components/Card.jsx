@@ -4,131 +4,144 @@ import Map from './Map';
 import BlackPlanImage from '../black_plan.svg';
 import PriceJustification from './PriceJustification';
 import PriceDeclaration from './PriceDeclaration';
+import MediaScroll from './MediaScroll';
 
-function Card({ type, closeSlider, whereLines, aboutLines, valueLines }) {
+function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources }) {
   const [activeTab, setActiveTab] = useState('declaration'); // Track active tab for 'price' case
 
-  let title, content;
+  // Determine objectType based on lines
+  const getObjectType = (lines) => {
+    if (!lines || lines.length === 0) return 'general';
+    // If any line has object_type 'general', return 'general'
+    if (lines.some((line) => line.object_type === 'general')) {
+      return 'general';
+    }
+    // Otherwise, return the object_type of the first line
+    return lines[0]?.object_type || 'general';
+  };
+
+  let title, content, lines, objectType;
   switch (type) {
-
-
     case 'about':
       title = 'О помещении';
+      lines = aboutLines;
+      objectType = getObjectType(aboutLines);
       content = (
         <>
           <img
             src={BlackPlanImage}
-            className="py-8 w-3/4 mx-auto"
+            className="py-8 w-full sm:w-2/4 mx-auto"
             alt="Property plan"
             loading="lazy"
           />
-          <TextSlider lines={aboutLines} />
+          
+          <TextSlider lines={lines} resources={resources} />
         </>
       );
       break;
 
     case 'value':
       title = 'Ценность';
+      lines = valueLines;
+      objectType = getObjectType(valueLines);
       content = (
         <div className="py-16 text-2xl">
-          <TextSlider lines={valueLines} />
+         
+          <TextSlider lines={lines} resources={resources} />
         </div>
       );
       break;
 
     case 'where':
-        title = 'Адрес';
-        content = (
-          <>
-           <Map />
-            <TextSlider lines={whereLines} />
-           
-          </>
-        );
-        break;
-  
+      title = 'Адрес';
+      lines = whereLines;
+      objectType = getObjectType(whereLines);
+      content = (
+        <>
+          <Map />
+       
+          <TextSlider lines={lines} resources={resources} />
+        </>
+      );
+      break;
+
     case 'price':
-            title = 'Цена';
-            content = (
-              <>
-                <div role="tablist" className="flex justify-start mb-4 border-b border-gray-200">
-                  <button
-                    role="tab"
-                    onClick={() => setActiveTab('declaration')}
-                    className={`px-4 py-2 text-sm font-medium text-gray-600 ${
-                      activeTab === 'declaration'
-                        ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
-                        : 'hover:text-teal-600'
-                    } transition-colors`}
-                    aria-selected={activeTab === 'declaration'}
-                    aria-label="View price declaration"
-                  >
-                    Цена
-                  </button>
-                  <button
-                    role="tab"
-                    onClick={() => setActiveTab('justification')}
-                    className={`px-4 py-2 text-sm font-medium text-gray-600 ${
-                      activeTab === 'justification'
-                        ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
-                        : 'hover:text-teal-600'
-                    } transition-colors`}
-                    aria-selected={activeTab === 'justification'}
-                    aria-label="View price justification"
-                  >
-                    Обоснование
-                  </button>
-      
-                  <button
-                    role="tab"
-                    onClick={() => setActiveTab('history')}
-                    className={`px-4 py-2 text-sm font-medium text-gray-600 ${
-                      activeTab === 'history'
-                        ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
-                        : 'hover:text-teal-600'
-                    } transition-colors`}
-                    aria-selected={activeTab === 'history'}
-                    aria-label="View price object history"
-                  >
-                    История
-                  </button>
-      
-      
-                  <button
-                    role="tab"
-                    onClick={() => setActiveTab('map')}
-                    className={`px-4 py-2 text-sm font-medium text-gray-600 ${
-                      activeTab === 'map'
-                        ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
-                        : 'hover:text-teal-600'
-                    } transition-colors`}
-                    aria-selected={activeTab === 'map'}
-                    aria-label="View map"
-                  >
-                      
-                    Карта
-                  </button>
-                </div>
-                <div className="flex-1 overflow-y-auto">
-                  {activeTab === 'declaration' && <PriceDeclaration />}
-                  {activeTab === 'justification' && <PriceJustification />}
-                  {activeTab === 'map' && <Map />}
-                </div>
-              </>
-            );
-            break;
-      
+      title = 'Цена';
+      content = (
+        <>
+          <div role="tablist" className="flex justify-start mb-4 border-b border-gray-200">
+            <button
+              role="tab"
+              onClick={() => setActiveTab('declaration')}
+              className={`px-4 py-2 text-sm font-medium text-gray-600 ${
+                activeTab === 'declaration'
+                  ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
+                  : 'hover:text-teal-600'
+              } transition-colors`}
+              aria-selected={activeTab === 'declaration'}
+              aria-label="View price declaration"
+            >
+              Цена
+            </button>
+            <button
+              role="tab"
+              onClick={() => setActiveTab('justification')}
+              className={`px-4 py-2 text-sm font-medium text-gray-600 ${
+                activeTab === 'justification'
+                  ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
+                  : 'hover:text-teal-600'
+              } transition-colors`}
+              aria-selected={activeTab === 'justification'}
+              aria-label="View price justification"
+            >
+              Обоснование
+            </button>
+            <button
+              role="tab"
+              onClick={() => setActiveTab('history')}
+              className={`px-4 py-2 text-sm font-medium text-gray-600 ${
+                activeTab === 'history'
+                  ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
+                  : 'hover:text-teal-600'
+              } transition-colors`}
+              aria-selected={activeTab === 'history'}
+              aria-label="View price object history"
+            >
+              История
+            </button>
+            <button
+              role="tab"
+              onClick={() => setActiveTab('map')}
+              className={`px-4 py-2 text-sm font-medium text-gray-600 ${
+                activeTab === 'map'
+                  ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
+                  : 'hover:text-teal-600'
+              } transition-colors`}
+              aria-selected={activeTab === 'map'}
+              aria-label="View map"
+            >
+              Карта
+            </button>
+          </div>
+          <div className="flex-1 overflow-y-auto">
+            {activeTab === 'declaration' && <PriceDeclaration />}
+            {activeTab === 'justification' && <PriceJustification />}
+            {activeTab === 'map' && <Map />}
+          </div>
+        </>
+      );
+      break;
 
     default:
       return null;
   }
 
   return (
-    <div className="-mx-4  fixed inset-0 bg-transparent flex items-center justify-center z-30">
+    <div className="-mx-4 fixed inset-0 bg-transparent flex items-center justify-center z-30">
       <div className="bg-white p-6 px-10 sm:p-8 sm:rounded-xl h-full sm:h-4/5 w-full sm:max-w-3xl mx-4 shadow-2xl animate-spinAround relative flex flex-col">
         <button
           onClick={closeSlider}
-          className="absolute top-3 right-3 text-gray-600 hover:text-gray-800 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full"
+          className="absolute top-3 right-5 text-gray-600 hover:text-gray-800 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full"
           aria-label="Close"
         >
           ×

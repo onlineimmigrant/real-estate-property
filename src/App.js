@@ -18,6 +18,7 @@ function App() {
 
   // Load images from property.json
   useEffect(() => {
+    console.log('Property resources:', propertyData.resources);
     const imageResources = propertyData.resources.filter(
       (item) => item.resource_type === 'image'
     );
@@ -69,22 +70,69 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // JSON structure for lines with mixed object_type
   const whereLines = [
-    'Беларусь, Минск, Петра Мстиславца 1-121, 220114',
-    'Район Национальной Библиотеки РБ (100м), Жилой комплекс "Маяк Минска"',
+    {
+      id: 1,
+      line: 'Беларусь, Минск, Петра Мстиславца 1-121, 220114',
+      object_type: 'location',
+    },
+    {
+      id: 2,
+      line: 'Район Национальной Библиотеки РБ (100м), Жилой комплекс "Маяк Минска"',
+      object_type: 'location',
+    },
   ];
+
   const aboutLines = [
-    'Количество комнат: 4',
-    'Санузел, мини-кухня',
-    'Площадь: 102 м2',
-    'Лифт для маломобильных групп населения',
+    {
+      id: 1,
+      line: 'Количество комнат: 4',
+      object_type: 'general', // Changed to 'general' for testing
+    },
+    {
+      id: 2,
+      line: 'Санузел, мини-кухня',
+      object_type: 'kitchen',
+    },
+    {
+      id: 3,
+      line: 'Площадь: 102 м2',
+      object_type: 'feature',
+    },
+    {
+      id: 4,
+      line: 'Лифт для маломобильных групп населения',
+      object_type: 'feature',
+    },
   ];
+
   const valueLines = [
-    'Недвижимость с действующим бизнесом',
-    'Современный дизайн и высококачественные материалы: износостойкая венецианская штукатурка, премиум плитка',
-    'Многофункциональность: салон услуг (красоты, парикмахерская), торговля, офис',
-    'Тепловая завеса, кондиционирование, вентиляция, водяной теплый пол, электроосвещение-класса люкс',
-    'Прямая продажа от собственника, без комиссии',
+    {
+      id: 1,
+      line: 'Недвижимость с действующим бизнесом',
+      object_type: 'benefit',
+    },
+    {
+      id: 2,
+      line: 'Современный дизайн и высококачественные материалы: износостойкая венецианская штукатурка, премиум плитка',
+      object_type: 'benefit',
+    },
+    {
+      id: 3,
+      line: 'Многофункциональность: салон услуг (красоты, парикмахерская), торговля, офис',
+      object_type: 'general', // Changed to 'general' for testing
+    },
+    {
+      id: 4,
+      line: 'Тепловая завеса, кондиционирование, вентиляция, водяной теплый пол, электроосвещение-класса люкс',
+      object_type: 'benefit',
+    },
+    {
+      id: 5,
+      line: 'Прямая продажа от собственника, без комиссии',
+      object_type: 'benefit',
+    },
   ];
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://example.com';
@@ -206,6 +254,7 @@ function App() {
             whereLines={whereLines}
             aboutLines={aboutLines}
             valueLines={valueLines}
+            resources={propertyData.resources}
           />
         </div>
       )}

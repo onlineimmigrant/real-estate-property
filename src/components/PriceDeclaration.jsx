@@ -51,7 +51,8 @@ const PriceDeclaration = () => {
   return (
     <div className="py-4 text-gray-800">
       <p className="text-base text-gray-700 mb-8">
-        В соответствии с законодательством Беларуси сделки проводятся только в белорусских рублях (BYN). Для удобства расчета стоимости помещения используется доллар США (USD). Также предоставляются эквиваленты в российских рублях (RUB) и евро (EUR) для оценки цены.
+        Законодательство Беларуси позволяет проводить сделки исключительно в белорусских рублях (BYN). 
+        Доллар США (USD), российские рубли (RUB) и евро (EUR) приводятся в качестве эквивалента.
       </p>
       {error && (
         <p className="text-red-600 text-sm mb-4 text-center">{error}</p>
@@ -74,22 +75,22 @@ const PriceDeclaration = () => {
         ))}
       </div>
       <div className="mt-8 flex justify-center">
-        <div className="bg-white border border-gray-200 rounded-lg sm:shadow-md p-6 pb-12 w-full text-center">
+        <div className="bg-white   p-6 pb-12 w-full text-center">
           <div className="mb-4">
             <p className="text-3xl font-semibold text-teal-600">
               {prices[currency].symbol}
             </p>
           </div>
-          <div className="sm:flex justify-between items-center space-y-16 sm:space-y-0">
-            <div className="flex-1">
+          <div className="sm:flex justify-between items-center space-y-8  gap-x-4 sm:space-y-0">
+            <div className="flex-1 border-2 rounded-full py-2 ">
               <p className="text-xl font-medium text-gray-600">м²</p>
-              <p className="text-4xl font-bold text-teal-600">
+              <p className="  text-4xl font-bold text-teal-600">
                 {prices[currency].perM2.toLocaleString()}
               </p>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 border-2 rounded-full py-2 ">
               <p className="text-xl font-medium text-gray-600">102 м²</p>
-              <p className="text-4xl font-bold text-teal-600">
+              <p className=" text-4xl font-bold text-teal-600">
                 {prices[currency].total.toLocaleString()}
               </p>
             </div>
