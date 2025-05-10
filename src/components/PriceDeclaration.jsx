@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 const PriceDeclaration = () => {
-  const [currency, setCurrency] = useState('USD'); // Track current currency: USD, BYN, RUB
+  const [currency, setCurrency] = useState('USD'); // Track current currency: USD, BYN, RUB, EUR
   const [prices, setPrices] = useState({
     USD: { perM2: 2200, total: 224400, symbol: '$' },
-    BYN: { perM2: 7150, total: 729300, symbol: 'BYN' }, // Fallback: 1 USD ≈ 3.25 BYN
+    BYN: { perM2: 7150, total: 729300, symbol: 'BYN' }, // Fallback: 1 USD ≈ 3.3 BYN
     RUB: { perM2: 202400, total: 20644800, symbol: 'RUB' }, // Fallback: 1 USD ≈ 92 RUB
+    EUR: { perM2: 2090, total: 213180, symbol: '€' }, // Fallback: 1 USD ≈ 0.95 EUR
   });
   const [error, setError] = useState(null);
 
@@ -20,6 +21,7 @@ const PriceDeclaration = () => {
         const data = await response.json();
         const bynRate = data.rates.BYN || 3.3; // Fallback if rate unavailable
         const rubRate = data.rates.RUB || 92; // Fallback if rate unavailable
+        const eurRate = data.rates.EUR || 0.95; // Fallback if rate unavailable
         setPrices({
           USD: { perM2: 2200, total: 224400, symbol: '$' },
           BYN: {
@@ -31,6 +33,11 @@ const PriceDeclaration = () => {
             perM2: Math.round(2200 * rubRate),
             total: Math.round(224400 * rubRate),
             symbol: 'RUB',
+          },
+          EUR: {
+            perM2: Math.round(2200 * eurRate),
+            total: Math.round(224400 * eurRate),
+            symbol: '€',
           },
         });
       } catch (err) {
@@ -44,13 +51,13 @@ const PriceDeclaration = () => {
   return (
     <div className="py-4 px-4 sm:px-6 text-gray-800">
       <p className="text-base text-gray-700 mb-4">
-        В соответствии с законодательством Беларуси сделки проводятся только в белорусских рублях (BYN). Для удобства расчета стоимости помещения используется доллар США (USD). Также предоставляется эквивалент в российских рублях (RUB) для оценки цены.
+        В соответствии с законодательством Беларуси сделки проводятся только в белорусских рублях (BYN). Для удобства расчета стоимости помещения используется доллар США (USD). Также предоставляются эквиваленты в российских рублях (RUB) и евро (EUR) для оценки цены.
       </p>
       {error && (
         <p className="text-red-600 text-sm mb-4 text-center">{error}</p>
       )}
       <div className="flex justify-center mb-4 space-x-2">
-        {['USD', 'BYN', 'RUB'].map((curr) => (
+        {['USD', 'BYN', 'RUB', 'EUR'].map((curr) => (
           <button
             key={curr}
             onClick={() => setCurrency(curr)}
@@ -66,8 +73,8 @@ const PriceDeclaration = () => {
           </button>
         ))}
       </div>
-      <div className="mt-8 flex justify-center ">
-        <div className="bg-white border border-gray-200 rounded-lg sm:shadow-md p-6 w-full  text-center">
+      <div className="mt-8 flex justify-center">
+        <div className="bg-white border border-gray-200 rounded-lg sm:shadow-md p-6 w-full text-center">
           <div className="mb-4">
             <p className="text-3xl font-semibold text-teal-600">
               {prices[currency].symbol}

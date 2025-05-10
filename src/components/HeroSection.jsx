@@ -71,18 +71,18 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
             </div>
           )}
         </div>
-        <div className="text-center">
+        <div className="text-center mb-32">
           <h2
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 animate-fadeInUp drop-shadow-lg"
             style={{ animationDelay: '2s' }}
           >
-            Премиум Бизнес Недвижимость
+            Премиум Класс Недвижимость
           </h2>
           <p
             className="text-lg sm:text-xl md:text-2xl text-teal-100 mb-8 animate-fadeInUp drop-shadow-md"
             style={{ animationDelay: '4s' }}
           >
-            Продается уникальное помещение от собственника
+            Помещение с отдельным входом для салона красоты, услуг, офис, врачебной практики в элитном районе центра Минска возле Национальной Библиотеки - Маяк Минска
           </p>
         </div>
       </div>
