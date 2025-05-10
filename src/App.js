@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { Cloudinary } from '@cloudinary/url-gen';
 import HeroSection from './components/HeroSection';
 import Card from './components/Card';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MainContent from './components/MainContent';
+import propertyData from './components/property.json';
 
 function App() {
   const [showHero, setShowHero] = useState(true);
   const [showNavbar, setShowNavbar] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [activeSlider, setActiveSlider] = useState(null);
+  const [images, setImages] = useState([]);
+  const cld = new Cloudinary({ cloud: { cloudName: 'dzagcqrbp' } });
+
+  // Load images from property.json
+  useEffect(() => {
+    const imageResources = propertyData.resources.filter(
+      (item) => item.resource_type === 'image'
+    );
+    setImages(imageResources);
+  }, []);
 
   useEffect(() => {
     if (showHero) {
@@ -161,6 +173,21 @@ function App() {
             contentUrl:
               'https://res.cloudinary.com/dzagcqrbp/video/upload/bmovy3i3i43kts5wa11u.mp4',
             uploadDate: '2025-05-10',
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ImageGallery',
+            name: 'Галерея помещения на Петра Мстиславца 1',
+            description: 'Изображения премиум коммерческого помещения в Минске.',
+            itemListElement: images.map((image, index) => ({
+              '@type': 'ImageObject',
+              position: index + 1,
+              url: cld.image(image.public_id).quality('auto').toURL(),
+              name: `Изображение помещения ${index + 1}`,
+              description: `Интерьер помещения на Петра Мстиславца 1, Минск, изображение ${index + 1}`,
+            })),
           })}
         </script>
       </Helmet>
