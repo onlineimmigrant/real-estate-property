@@ -153,7 +153,7 @@ function App() {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'VideoObject',
-            name: 'Тур по помещению на Петра Мстиславца 1',
+            name: 'Тур по помещению на Петра Мстиславца 1, Минск',
             description:
               'Видео премиум коммерческого помещения 102 м² с отдельным входом в Минске, Маяк Минска.',
             thumbnailUrl:
