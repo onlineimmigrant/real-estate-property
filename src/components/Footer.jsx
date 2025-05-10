@@ -9,12 +9,7 @@ function Footer() {
           <a href="#" className="text-teal-100 hover:text-teal-300">
             Контакты
           </a>
-          <a href="#" className="text-teal-100 hover:text-teal-300">
-            О нас
-          </a>
-          <a href="#" className="text-teal-100 hover:text-teal-300">
-            Политика
-          </a>
+
         </div>
       </div>
     </footer>

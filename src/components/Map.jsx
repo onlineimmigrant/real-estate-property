@@ -146,7 +146,7 @@ function Map() {
           } hover:bg-teal-700 transition-colors`}
           aria-label="Switch to standard map"
         >
-          Standard Map
+          Карта
         </button>
         <button
           onClick={() => setMapType('panorama')}
@@ -158,7 +158,7 @@ function Map() {
           aria-label="Switch to street panorama"
           disabled={hasPanorama === false}
         >
-          Street Panorama
+          Уличная Панорама
         </button>
       </div>
       <div

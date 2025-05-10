@@ -1,6 +1,8 @@
 import React from 'react';
 import HeroImage from '../real_estate_hero.svg';
 import HeroImageMobile from '../real_estate_hero_mobile.svg';
+import MayakMinska from '../mayak_minska.svg';
+
 
 function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
   if (!showHero) return null;
@@ -25,9 +27,10 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
         className="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-teal-900/80"
         style={{ zIndex: 2 }}
       ></div>
-      <div className="relative z-10 px-4 flex flex-col justify-between h-full py-12 max-w-3xl mx-auto">
-        <div className="flex-1 flex items-center justify-center">
+      <div className="relative z-10 px-4 flex flex-col justify-center h-full py-12 max-w-3xl mx-auto">
+       <div className="flex-1 flex items-center justify-center px-8 sm:px-4">
           {showButtons && (
+            <div className="space-y-8  gap-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl mx-auto">
               <button
                 onClick={() => openSlider('where')}
@@ -56,6 +59,14 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
                 style={{ animationDelay: '0.9s' }}
               >
                 Галерея
+              </button>
+              </div>
+              <button
+                onClick={() => openSlider('price')}
+                className="w-full border-2 border-yellow-500 text-yellow-100 bg-yellow-600/30 py-3 px-6 sm:py-5  rounded-xl text-lg sm:text-2xl font-semibold hover:bg-yellow-600/50 transition-transform hover:scale-105"
+                style={{ animationDelay: '0.7s' }}
+              >
+                Цена. Обоснование
               </button>
             </div>
           )}
