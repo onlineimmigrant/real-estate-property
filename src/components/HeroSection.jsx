@@ -95,7 +95,7 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
             </div>
           )}
         </div>
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <div className="relative inline-block group">
             <button
               onClick={openVideoModal}
@@ -110,7 +110,7 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
             </div>
           </div>
           <h2
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 animate-fadeInUp drop-shadow-lg"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white my-4 animate-fadeInUp drop-shadow-lg"
             style={{ animationDelay: '2s' }}
           >
             Премиум Класс Недвижимость
