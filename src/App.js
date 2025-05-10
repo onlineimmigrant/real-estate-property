@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet'; // For dynamic meta tags
+import { Helmet } from 'react-helmet';
 import HeroSection from './components/HeroSection';
 import Card from './components/Card';
 import Header from './components/Header';
@@ -75,12 +75,10 @@ function App() {
     'Прямая продажа от собственника, без комиссии',
   ];
 
-  // Dynamically get the current URL
   const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://example.com';
 
   return (
     <div className="bg-gray-50 font-sans">
-      {/* SEO Meta Tags and Structured Data */}
       <Helmet>
         <title>Премиум недвижимость в Минске | Петра Мстиславца 1</title>
         <meta
@@ -93,7 +91,6 @@ function App() {
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={currentUrl} />
-        {/* Open Graph */}
         <meta
           property="og:title"
           content="Премиум коммерческое помещение 102 м² в Минске"
@@ -108,7 +105,6 @@ function App() {
           property="og:image"
           content={`${currentUrl}/images/property.jpg`}
         />
-        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -122,7 +118,6 @@ function App() {
           name="twitter:image"
           content={`${currentUrl}/images/property.jpg`}
         />
-        {/* JSON-LD Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
@@ -154,9 +149,22 @@ function App() {
             },
           })}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            name: 'Тур по помещению на Петра Мстиславца 1',
+            description:
+              'Видео премиум коммерческого помещения 102 м² с отдельным входом в Минске, Маяк Минска.',
+            thumbnailUrl:
+              'https://res.cloudinary.com/dzagcqrbp/image/upload/fdnaj1skiohqpipsibbz.jpg',
+            contentUrl:
+              'https://res.cloudinary.com/dzagcqrbp/video/upload/bmovy3i3i43kts5wa11u.mp4',
+            uploadDate: '2025-05-10',
+          })}
+        </script>
       </Helmet>
 
-      {/* Main Content */}
       <HeroSection
         showHero={showHero}
         showButtons={showButtons}

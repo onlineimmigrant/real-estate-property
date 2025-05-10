@@ -51,6 +51,22 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines }) {
             >
               Обоснование
             </button>
+
+            <button
+              role="tab"
+              onClick={() => setActiveTab('history')}
+              className={`px-4 py-2 text-sm font-medium text-gray-600 ${
+                activeTab === 'history'
+                  ? 'border-b-2 border-teal-600 text-teal-600 font-semibold'
+                  : 'hover:text-teal-600'
+              } transition-colors`}
+              aria-selected={activeTab === 'history'}
+              aria-label="View price object history"
+            >
+              История
+            </button>
+
+
             <button
               role="tab"
               onClick={() => setActiveTab('map')}
@@ -62,6 +78,7 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines }) {
               aria-selected={activeTab === 'map'}
               aria-label="View map"
             >
+                
               Карта
             </button>
           </div>
@@ -103,8 +120,8 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines }) {
   }
 
   return (
-    <div className="-mx-4 fixed inset-0 bg-transparent flex items-center justify-center z-30">
-      <div className="bg-white p-6 sm:p-8 sm:rounded-xl h-full sm:h-4/5 w-full sm:max-w-3xl mx-4 shadow-2xl animate-spinAround relative flex flex-col">
+    <div className="-mx-4  fixed inset-0 bg-transparent flex items-center justify-center z-30">
+      <div className="bg-white p-6 px-10 sm:p-8 sm:rounded-xl h-full sm:h-4/5 w-full sm:max-w-3xl mx-4 shadow-2xl animate-spinAround relative flex flex-col">
         <button
           onClick={closeSlider}
           className="absolute top-3 right-3 text-gray-600 hover:text-gray-800 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full"
