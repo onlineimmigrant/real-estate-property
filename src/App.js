@@ -128,7 +128,7 @@ function App() {
             address: {
               '@type': 'PostalAddress',
               streetAddress: 'Петра Мстиславца 1-121',
-              addressLocality: 'Минск',
+              addressLocality: 'Минск, Беларусь',
               postalCode: '220114',
               addressCountry: 'BY',
             },
