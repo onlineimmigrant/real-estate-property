@@ -14,7 +14,7 @@ function VideoModal({ isOpen, onClose, videoError, handleVideoError, videoPublic
 
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 animate-fadeIn">
-      <div className="bg-white rounded-lg p-4 w-full sm:w-auto sm:w-3/4 max-w-4xl relative">
+      <div className="m-2 bg-white rounded-lg p-4 w-7/8 sm:w-auto sm:w-3/4 max-w-4xl relative">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full"
