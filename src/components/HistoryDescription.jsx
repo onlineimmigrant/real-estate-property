@@ -1,6 +1,7 @@
 import React from 'react';
 import MediaScroll from './MediaScroll';
 import HistoryDescriptionComparison from './HistoryDescriptionComparison';
+import ContactForm from './ContactForm';
 
 const HistoryDescription = () => {
   return (
@@ -53,6 +54,7 @@ const HistoryDescription = () => {
             вашим идеям и проектам. Приходите, посмотрите своими глазами — уверены, вы почувствуете его особую атмосферу!
           </p>
         </div>
+        <ContactForm />
       </div>
     </section>
   );
