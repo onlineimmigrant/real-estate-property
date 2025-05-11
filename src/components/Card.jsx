@@ -5,6 +5,7 @@ import BlackPlanImage from '../black_plan.svg';
 import PriceJustification from './PriceJustification';
 import PriceDeclaration from './PriceDeclaration';
 import MediaScroll from './MediaScroll';
+import HistoryDescription from './HistoryDescription';
 
 function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources }) {
   const [activeTab, setActiveTab] = useState('declaration'); // Track active tab for 'price' case
@@ -124,6 +125,7 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources
             </button>
           </div>
           <div className="flex-1 overflow-y-auto">
+            {activeTab === 'history' && <HistoryDescription />}
             {activeTab === 'declaration' && <PriceDeclaration />}
             {activeTab === 'justification' && <PriceJustification />}
             {activeTab === 'map' && <Map />}

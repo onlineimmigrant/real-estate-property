@@ -72,7 +72,7 @@ function HeroContent({ showButtons, openSlider, scrollToGallery, openVideoModal 
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 animate-fadeInUp drop-shadow-lg"
           style={{ animationDelay: '2s' }}
         >
-          Премиум Класс Недвижимость
+          Продажа VIP  Помещения
         </h2>
         <p
           className="text-lg sm:text-xl md:text-2xl text-teal-100 mb-8 animate-fadeInUp drop-shadow-md"

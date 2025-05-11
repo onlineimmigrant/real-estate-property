@@ -23,7 +23,7 @@ function MediaScroll() {
   };
 
   return (
-    <div className="my-16 h-48 sm:h-48 overflow-x-auto overflow-y-hidden flex flex-row space-x-4 snap-x snap-mandatory  py-2">
+    <div className="my-8 h-48 sm:h-48 overflow-x-auto overflow-y-hidden flex flex-row space-x-4 snap-x snap-mandatory  py-2">
       {media.map((item, index) => (
         <div
           key={item.public_id}
