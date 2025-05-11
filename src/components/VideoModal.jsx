@@ -2,8 +2,13 @@ import React from 'react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedVideo } from '@cloudinary/react';
 
-function VideoModal({ isOpen, onClose, videoError, handleVideoError }) {
+function VideoModal({ isOpen, onClose, videoError, handleVideoError, videoPublicId, posterPublicId }) {
   const cld = new Cloudinary({ cloud: { cloudName: 'dzagcqrbp' } });
+
+  // Helper function to check if a public_id is a URL
+  const isThirdPartyUrl = (publicId) => {
+    return publicId.startsWith('http://') || publicId.startsWith('https://');
+  };
 
   if (!isOpen) return null;
 
@@ -20,10 +25,21 @@ function VideoModal({ isOpen, onClose, videoError, handleVideoError }) {
         <h3 className="text-lg font-medium text-gray-800 mb-2">Видео тура по помещению</h3>
         {videoError ? (
           <p className="text-red-600 text-center">{videoError}</p>
+        ) : isThirdPartyUrl(videoPublicId) ? (
+          <video
+            controls
+            className="w-full sm:w-auto h-auto sm:h-128 rounded"
+            autoPlay
+            poster={isThirdPartyUrl(posterPublicId) ? posterPublicId : cld.image(posterPublicId).quality('auto').toURL()}
+            onError={handleVideoError}
+          >
+            <source src={videoPublicId} type="video/mp4" />
+            <p>Ваш браузер не поддерживает видео.</p>
+          </video>
         ) : (
           <AdvancedVideo
-          cldVid={cld.video('bmovy3i3i43kts5wa11u').quality('auto').format('mp4')}
-          poster={cld.image('fdnaj1skiohqpipsibbz').quality('auto').toURL()}
+            cldVid={cld.video(videoPublicId).quality('auto').format('mp4')}
+            poster={isThirdPartyUrl(posterPublicId) ? posterPublicId : cld.image(posterPublicId).quality('auto').toURL()}
             controls
             className="w-full sm:w-auto h-auto sm:h-128 rounded"
             autoPlay

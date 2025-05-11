@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaEnvelope, FaPhone, FaTelegramPlane, FaWhatsapp } from 'react-icons/fa';
 
 const ContactForm = () => {
+  // Calculate tomorrow's date
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const defaultTomorrowDate = tomorrow.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,11 +16,14 @@ const ContactForm = () => {
     mathAnswer: '',
     preferredContact: 'email', // Default value
   });
-  const [selectedDate, setSelectedDate] = useState(null); // Optional, null by default
+  const [selectedDate, setSelectedDate] = useState(''); // Empty string means "не имеет значения"
   const [selectedTimeRange, setSelectedTimeRange] = useState(''); // Optional, empty by default
+  const [dateMode, setDateMode] = useState('any'); // 'any' or 'choose'
+  const [showDatePicker, setShowDatePicker] = useState(false); // Control visibility of date picker
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mathQuestion, setMathQuestion] = useState({ num1: 0, num2: 0, answer: 0 });
+  const datePickerRef = useRef(null); // Ref for the hidden date picker
 
   useEffect(() => {
     const num1 = Math.floor(Math.random() * 10) + 1;
@@ -62,7 +68,6 @@ const ContactForm = () => {
     if (!formData.mathAnswer || parseInt(formData.mathAnswer) !== mathQuestion.answer) {
       newErrors.mathAnswer = 'Неверный ответ на вопрос. Попробуйте снова.';
     }
-    // Removed required validation for preferredContact, date, and timeRange
     return newErrors;
   };
 
@@ -72,6 +77,26 @@ const ContactForm = () => {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
+  };
+
+  const handleDateModeChange = (mode) => {
+    setDateMode(mode);
+    if (mode === 'any') {
+      setSelectedDate(''); // Set to "не имеет значения"
+      setShowDatePicker(false);
+    } else if (mode === 'choose') {
+      setSelectedDate(defaultTomorrowDate); // Set to tomorrow by default
+      setShowDatePicker(true); // Show date picker on single click
+      setTimeout(() => {
+        datePickerRef.current?.focus(); // Programmatically open the date picker
+      }, 0);
+    }
+  };
+
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value); // Value is in YYYY-MM-DD format
+    setShowDatePicker(false); // Hide picker after selection
+    if (errors.date) setErrors((prev) => ({ ...prev, date: '' }));
   };
 
   const handleSubmit = async (e) => {
@@ -98,8 +123,14 @@ const ContactForm = () => {
         throw new Error('EmailJS environment variables are not defined. Check your .env file.');
       }
 
-      // Use default values if fields are not selected
-      const formattedDate = selectedDate ? selectedDate.toLocaleDateString('ru-RU') : 'не имеет значения';
+      // Format the date as DD-MM-YYYY
+      const formattedDate = selectedDate
+        ? new Date(selectedDate).toLocaleDateString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+          }).split('/').join('-')
+        : 'не имеет значения';
       const timeRange = selectedTimeRange || 'не имеет значения';
 
       const enhancedMessage = `${formData.message}\n\nPreferred Contact Method: ${formData.preferredContact}\nPreferred Date: ${formattedDate}\nPreferred Time Range: ${timeRange}`;
@@ -131,7 +162,9 @@ const ContactForm = () => {
       console.log('Email sent successfully:', result);
       alert('Сообщение успешно отправлено! Мы свяжемся с вами скоро.');
       setFormData({ name: '', email: '', phone: '', message: '', honeypot: '', mathAnswer: '', preferredContact: 'email' });
-      setSelectedDate(null);
+      setSelectedDate(''); // Reset to "не имеет значения"
+      setDateMode('any'); // Reset to "любая дата"
+      setShowDatePicker(false);
       setSelectedTimeRange('');
       setErrors({});
       const num1 = Math.floor(Math.random() * 10) + 1;
@@ -231,7 +264,7 @@ const ContactForm = () => {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Предпочитаемый способ связи (опционально)
             </label>
-            <div className="sm:flex sm:flex-nowrap sm:divide-x sm:divide-gray-300 sm:border sm:rounded-md sm:overflow-hidden grid grid-cols-2 gap-2">
+            <div className="sm:flex sm:flex-nowrap  sm:divide-gray-300 sm:border sm:rounded-md sm:overflow-hidden grid grid-cols-2 gap-2">
               {contactMethods.map((method, index) => (
                 <label
                   key={method.value}
@@ -263,22 +296,58 @@ const ContactForm = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Предпочитаемая дата (опционально)
             </label>
-            <DatePicker
-              selected={selectedDate}
-              onChange={(date) => {
-                setSelectedDate(date);
-                if (errors.date) setErrors((prev) => ({ ...prev, date: '' }));
-              }}
-              dateFormat="dd/MM/yyyy"
-              minDate={new Date()}
-              className={`mt-1 block w-full px-3 py-2 border ${
-                errors.date ? 'border-red-500' : 'border-gray-300'
-              } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
-              placeholderText="Выберите дату"
-            />
+            <div className="sm:flex sm:flex-nowrap sm:divide-x sm:divide-gray-300 sm:border sm:rounded-md sm:overflow-hidden flex flex-wrap">
+              <label
+                className={`flex items-center justify-center px-4 py-2 border-gray-300 cursor-pointer transition-colors duration-200 ${
+                  dateMode === 'any'
+                    ? 'bg-blue-100 border-blue-500'
+                    : 'bg-white hover:bg-blue-50'
+                } sm:rounded-l-md sm:border-0 flex-1 text-center sm:min-w-0 min-w-[150px]`}
+              >
+                <input
+                  type="radio"
+                  name="dateMode"
+                  value="any"
+                  checked={dateMode === 'any'}
+                  onChange={() => handleDateModeChange('any')}
+                  className="sr-only"
+                />
+                <span className="text-sm text-gray-700">любая дата</span>
+              </label>
+              <label
+                className={`flex items-center justify-center px-4 py-2 border-gray-300 cursor-pointer transition-colors duration-200 ${
+                  dateMode === 'choose'
+                    ? 'bg-blue-100 border-blue-500'
+                    : 'bg-white hover:bg-blue-50'
+                } sm:rounded-r-md sm:border-0 flex-1 text-center sm:min-w-0 min-w-[150px]`}
+              >
+                <input
+                  type="radio"
+                  name="dateMode"
+                  value="choose"
+                  checked={dateMode === 'choose'}
+                  onChange={() => handleDateModeChange('choose')}
+                  className="sr-only"
+                />
+                <span className="text-sm text-gray-700">выбрать дату</span>
+              </label>
+            </div>
+            {/* Hidden date picker that opens on single click */}
+            {showDatePicker && (
+              <input
+                type="date"
+                ref={datePickerRef}
+                value={selectedDate}
+                onChange={handleDateChange}
+                onBlur={() => setShowDatePicker(false)} // Hide when focus is lost
+                min={new Date().toISOString().split('T')[0]} // Restrict to today or future dates
+                className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                autoFocus
+              />
+            )}
             {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
           </div>
 

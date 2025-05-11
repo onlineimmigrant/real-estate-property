@@ -1,114 +1,113 @@
 {
     "resources": [
-        
-    
        
-      {
-        "public_id": "fdnaj1skiohqpipsibbz",
-        "resource_type": "image",
-        "object_type": "benefit"
-      },
-      {
-        "public_id": "bumggctpdxw7fefpf5sv",
-        "resource_type": "image",
-        "object_type": "kitchen"
-      },
-      {
-        "public_id": "wpndvwt0o2cy3dysxfr0",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "z4yanhxizt8iqkllrlp0",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "z4yanhxizt8iqkllrlp0",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "rdwblzmzdc6gfo7y06vx",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "w0apohhrqcuzkxa0pjan",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "ivat2eoawainmfkqaa9j",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "ldoajkgcwkebqvaczxm8",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "mnhspf8dluddbz5g4w77",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "m9fmshyhhwmn8caka7a9",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "unjg1gfcypoa1h8v65iu",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "m6vhq7nm0yw2fl5jo0lr",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "o4nnmygze4q9rn5h0eme",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "j1419lxegv7rat4gwi2m",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "j1419lxegv7rat4gwi2m",
-        "resource_type": "image",
-        "object_type": "general"
-      },
-      {
-        "public_id": "lq9tvcvfcbo0yszedhk0",
-        "resource_type": "image",
-        "object_type": "general"
-      },
+    
+        {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_1.jpg",
+            "resource_type": "image",
+            "object_type": "entrance"
+          },
+  
+          
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_2.jpg",
+            "resource_type": "image",
+            "object_type": "entrance"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/lift_1.jpg",
+            "resource_type": "image",
+            "object_type": "entrance"
+          },
 
-      {
-        "public_id": "bmovy3i3i43kts5wa11u",
-        "resource_type": "video",
-        "object_type": "general"
-      },
-      {
-        "public_id": "zzfbsdokpipcbg2pd33a",
-        "resource_type": "video",
-        "object_type": "general"
-      },
-      {
-        "public_id": "zzfbsdokpipcbg2pd33a",
-        "resource_type": "video",
-        "object_type": "general"
-      },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_1.jpg",
+            "resource_type": "image",
+            "object_type": "room_2"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_2.jpg",
+            "resource_type": "image",
+            "object_type": "room_2"
+          },
 
-  {
-    "public_id": "huewc0towmfbgdx1rkub",
-    "resource_type": "video",
-    "object_type": "general"
-  }
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_3.jpg",
+            "resource_type": "image",
+            "object_type": "room_2"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_4.jpg",
+            "resource_type": "image",
+            "object_type": "room_2"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_5.jpg",
+            "resource_type": "image",
+            "object_type": "room_2"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_6.jpg",
+            "resource_type": "image",
+            "object_type": "room_2"
+          },
+ 
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_8.jpg",
+            "resource_type": "image",
+            "object_type": "room_2"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_1.jpg",
+            "resource_type": "image",
+            "object_type": "room_3"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_2.jpg",
+            "resource_type": "image",
+            "object_type": "room_3"
+          },
+
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_3.jpg",
+            "resource_type": "image",
+            "object_type": "room_3"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_1_1.jpg",
+            "resource_type": "image",
+            "object_type": "room_1"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_1_2.jpg",
+            "resource_type": "image",
+            "object_type": "room_1"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_4_1.jpg",
+            "resource_type": "image",
+            "object_type": "room_4"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/video_entrance.mp4",
+            "resource_type": "video",
+            "object_type": "entrance"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/lift_0.jpg",
+            "resource_type": "image",
+            "object_type": "entrance"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/video_overview_main.mp4",
+            "resource_type": "video",
+            "object_type": "general"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/video_room_1_room_2.mp4",
+            "resource_type": "video",
+            "object_type": "room_2"
+          }
+   
     ]
   }

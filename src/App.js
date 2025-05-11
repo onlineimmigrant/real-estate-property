@@ -87,23 +87,42 @@ function App() {
   const aboutLines = [
     {
       id: 1,
-      line: 'Количество комнат: 4',
-      object_type: 'general', // Changed to 'general' for testing
+      line: 'Площадь: 102 м2, Количество комнат: 4',
+      object_type: 'general',
     },
+
+
     {
       id: 2,
-      line: 'Санузел, мини-кухня',
-      object_type: 'kitchen',
+      line: 'Комната 1',
+      object_type: 'room_1', 
     },
+
     {
       id: 3,
-      line: 'Площадь: 102 м2',
-      object_type: 'feature',
+      line: 'Комната 2',
+      object_type: 'room_2', 
     },
     {
       id: 4,
-      line: 'Лифт для маломобильных групп населения',
-      object_type: 'feature',
+      line: 'Комната 3',
+      object_type: 'room_3', 
+    },
+    {
+      id: 5,
+      line: 'Комната 4',
+      object_type: 'room_4', 
+    },
+    {
+      id: 6,
+      line: 'Санузел, мини-кухня',
+      object_type: 'kitchen',
+    },
+
+    {
+      id: 7,
+      line: 'Входная группа. Лифт для маломобильных групп населения',
+      object_type: 'entrance',
     },
   ];
 

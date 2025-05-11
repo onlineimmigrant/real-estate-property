@@ -22,8 +22,12 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
     setVideoError('Не удалось загрузить видео. Пожалуйста, попробуйте позже.');
   };
 
+  // Define video and poster public IDs (these could come from props or a config)
+  const videoPublicId = 'https://codedharmony.blob.core.windows.net/mstislavca/video_overview_main.mp4'; // Could be a third-party URL like 'https://example.com/video.mp4'
+  const posterPublicId = 'fdnaj1skiohqpipsibbz'; // Could be a third-party URL like 'https://example.com/poster.jpg'
+
   return (
-    <section className="sm:h-screen flex items-center justify-center text-center bg-gray-900 relative overflow-hidden">
+    <section className="h-screen flex items-center justify-center text-center bg-gray-900 relative overflow-hidden">
       <BackgroundImages />
       <HeroContent
         showButtons={showButtons}
@@ -36,6 +40,8 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
         onClose={closeVideoModal}
         videoError={videoError}
         handleVideoError={handleVideoError}
+        videoPublicId={videoPublicId}
+        posterPublicId={posterPublicId}
       />
     </section>
   );
