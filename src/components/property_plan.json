@@ -41,33 +41,33 @@
           {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/toilet_plan.svg",
             "resource_type": "image",
-            "object_type": "3"
+            "object_type": "6"
           },
           {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/kitchen_plan.svg",
             "resource_type": "image",
-            "object_type": "3"
+            "object_type": "7"
           },
           {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_ladder_plan.svg",
             "resource_type": "image",
-            "object_type": "4"
+            "object_type": "8"
           },
           {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_lift_plan.svg",
             "resource_type": "image",
-            "object_type": "5"
+            "object_type": "8"
           },
           {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_priemki_plan.svg",
             "resource_type": "image",
-            "object_type": "4"
+            "object_type": "8"
           },
  
           {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/102m_plan_with_entrance.svg",
             "resource_type": "image",
-            "object_type": "3"
+            "object_type": "8"
           }
           
     ]

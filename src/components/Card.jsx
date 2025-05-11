@@ -143,7 +143,7 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources
 
   return (
     <div className="-mx-4 fixed inset-0 bg-transparent flex items-center justify-center z-30">
-      <div className="bg-white p-6 px-10 sm:p-8 sm:rounded-xl h-full sm:h-4/5 w-full sm:max-w-3xl mx-4 shadow-2xl animate-spinAround relative flex flex-col">
+      <div className="bg-white p-6  sm:rounded-xl h-full sm:h-4/5 w-full sm:max-w-3xl mx-4 shadow-2xl animate-spinAround relative flex flex-col">
         <button
           onClick={closeSlider}
           className="absolute top-3 right-5 text-gray-600 hover:text-gray-800 text-xl font-bold w-8 h-8 flex items-center justify-center rounded-full"
@@ -151,7 +151,11 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources
         >
           ×
         </button>
-        <h3 className="bg-gray-50 p-2 px-4 mr-4 text-2xl font-bold text-gray-800 mb-4">{title}</h3>
+        <h3 className="mt-4   text-2xl font-bold text-gray-800 ">{title}
+        
+        </h3>
+        <span className=" transform  w-16 h-1 bg-teal-600 rounded-full shadow-sm" />
+        
         <div className="flex-1 overflow-y-auto">{content}</div>
       </div>
     </div>
