@@ -130,7 +130,7 @@ function App() {
     {
       id: 1,
       line: 'Недвижимость с действующим бизнесом',
-      object_type: 'benefit',
+      object_type: 'general',
     },
     {
       id: 2,
@@ -145,7 +145,7 @@ function App() {
     {
       id: 4,
       line: 'Тепловая завеса, кондиционирование, вентиляция, водяной теплый пол, электроосвещение-класса люкс',
-      object_type: 'benefit',
+      object_type: 'room_3',
     },
     {
       id: 5,

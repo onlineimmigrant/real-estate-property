@@ -1,0 +1,74 @@
+{
+    "resources": [
+       
+    
+        {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/property_plan_clean.svg",
+            "resource_type": "image",
+            "object_type": "1"
+          },
+  
+          
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/102m_plan.svg",
+            "resource_type": "image",
+            "object_type": "1"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_1_plan.svg",
+            "resource_type": "image",
+            "object_type": "2"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_plan.svg",
+            "resource_type": "image",
+            "object_type": "3"
+          },
+   
+
+  
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_plan.svg",
+            "resource_type": "image",
+            "object_type": "4"
+          },
+
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_4_plan.svg",
+            "resource_type": "image",
+            "object_type": "5"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/toilet_plan.svg",
+            "resource_type": "image",
+            "object_type": "3"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/kitchen_plan.svg",
+            "resource_type": "image",
+            "object_type": "3"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_ladder_plan.svg",
+            "resource_type": "image",
+            "object_type": "4"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_lift_plan.svg",
+            "resource_type": "image",
+            "object_type": "5"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_priemki_plan.svg",
+            "resource_type": "image",
+            "object_type": "4"
+          },
+ 
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/102m_plan_with_entrance.svg",
+            "resource_type": "image",
+            "object_type": "3"
+          }
+          
+    ]
+  }

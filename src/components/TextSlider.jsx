@@ -3,18 +3,25 @@ import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedImage, AdvancedVideo } from '@cloudinary/react';
 import PropTypes from 'prop-types';
 
-const TextSlider = ({ lines = [], resources = [] }) => {
+const TextSlider = ({ lines = [], resources = [], onLineChange }) => {
   const [currentLine, setCurrentLine] = useState(0);
   const [selectedMedia, setSelectedMedia] = useState(null);
-  const [errorStates, setErrorStates] = useState([]); // Track errors for each media item
+  const [errorStates, setErrorStates] = useState([]);
   const cld = new Cloudinary({ cloud: { cloudName: 'dzagcqrbp' } });
 
   // Debug logging
   useEffect(() => {
     console.log('TextSlider lines:', lines);
     console.log('TextSlider resources:', resources);
-    setErrorStates(new Array(resources.length).fill(false)); // Initialize error states
+    setErrorStates(new Array(resources.length).fill(false));
   }, [lines, resources]);
+
+  // Notify parent of currentLine changes
+  useEffect(() => {
+    if (onLineChange) {
+      onLineChange(currentLine);
+    }
+  }, [currentLine, onLineChange]);
 
   // Navigation handlers
   const goToPrev = useCallback(() => {
@@ -247,6 +254,7 @@ TextSlider.propTypes = {
       object_type: PropTypes.string,
     })
   ),
+  onLineChange: PropTypes.func, // Add prop type for onLineChange
 };
 
 // Memoize component to prevent unnecessary re-renders

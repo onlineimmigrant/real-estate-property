@@ -4,20 +4,19 @@ import Map from './Map';
 import BlackPlanImage from '../black_plan.svg';
 import PriceJustification from './PriceJustification';
 import PriceDeclaration from './PriceDeclaration';
-import MediaScroll from './MediaScroll';
+import MediaScrollPropertyPlan from './MediaScrollPropertyPlan';
 import HistoryDescription from './HistoryDescription';
 
 function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources }) {
   const [activeTab, setActiveTab] = useState('declaration'); // Track active tab for 'price' case
+  const [currentLine, setCurrentLine] = useState(0); // Track the current line index
 
   // Determine objectType based on lines
   const getObjectType = (lines) => {
     if (!lines || lines.length === 0) return 'general';
-    // If any line has object_type 'general', return 'general'
     if (lines.some((line) => line.object_type === 'general')) {
       return 'general';
     }
-    // Otherwise, return the object_type of the first line
     return lines[0]?.object_type || 'general';
   };
 
@@ -29,14 +28,12 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources
       objectType = getObjectType(aboutLines);
       content = (
         <>
-          <img
-            src={BlackPlanImage}
-            className="py-8 w-full sm:w-2/4 mx-auto"
-            alt="Property plan"
-            loading="lazy"
+          <MediaScrollPropertyPlan lines={lines} currentLine={currentLine} />
+          <TextSlider
+            lines={lines}
+            resources={resources}
+            onLineChange={(index) => setCurrentLine(index)} // Pass callback to update currentLine
           />
-          
-          <TextSlider lines={lines} resources={resources} />
         </>
       );
       break;
@@ -47,8 +44,11 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources
       objectType = getObjectType(valueLines);
       content = (
         <div className="py-16 text-2xl">
-         
-          <TextSlider lines={lines} resources={resources} />
+          <TextSlider
+            lines={lines}
+            resources={resources}
+            onLineChange={(index) => setCurrentLine(index)}
+          />
         </div>
       );
       break;
@@ -60,8 +60,11 @@ function Card({ type, closeSlider, whereLines, aboutLines, valueLines, resources
       content = (
         <>
           <Map />
-       
-          <TextSlider lines={lines} resources={resources} />
+          <TextSlider
+            lines={lines}
+            resources={resources}
+            onLineChange={(index) => setCurrentLine(index)}
+          />
         </>
       );
       break;
