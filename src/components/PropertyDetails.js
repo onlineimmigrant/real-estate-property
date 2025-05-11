@@ -4,7 +4,7 @@ import Map from './Map';
 
 function PropertyDetails() {
   return (
-    <div className="  p-8 mx-auto transition-all duration-300 ">
+    <div className=" mx-auto transition-all duration-300 ">
       <h2 className="text-3xl font-bold text-gray-900 mb-8 tracking-tight">Помещение</h2>
 
       {/* Summary Section */}
