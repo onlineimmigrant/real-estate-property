@@ -88,11 +88,13 @@ const PriceDeclaration = () => {
                 {prices[currency].perM2.toLocaleString()}
               </p>
             </div>
-            <div className="flex-1 border-2 rounded-full py-2 ">
+            <div className="flex-1  ">
+                <div className='border-2  rounded-full py-2'>
               <p className="text-xl font-medium text-gray-600">102 м²</p>
               <p className=" text-4xl font-bold text-teal-600">
                 {prices[currency].total.toLocaleString()}
               </p>
+              </div>
             </div>
           </div>
         </div>

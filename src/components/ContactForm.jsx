@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { FaEnvelope, FaPhone, FaTelegramPlane, FaWhatsapp } from 'react-icons/fa';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +11,10 @@ const ContactForm = () => {
     message: '',
     honeypot: '',
     mathAnswer: '',
+    preferredContact: 'email', // Default value
   });
+  const [selectedDate, setSelectedDate] = useState(null); // Optional, null by default
+  const [selectedTimeRange, setSelectedTimeRange] = useState(''); // Optional, empty by default
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mathQuestion, setMathQuestion] = useState({ num1: 0, num2: 0, answer: 0 });
@@ -23,6 +29,20 @@ const ContactForm = () => {
       REACT_APP_EMAILJS_PUBLIC_KEY: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
     });
   }, []);
+
+  const timeRanges = [
+    '8:00 - 12:00',
+    '12:00 - 16:00',
+    '16:00 - 20:00',
+    '20:00 - 00:00',
+  ];
+
+  const contactMethods = [
+    { value: 'email', label: 'Email', icon: <FaEnvelope className="text-lg" /> },
+    { value: 'phone', label: 'Phone Call', icon: <FaPhone className="text-lg" /> },
+    { value: 'telegram', label: 'Telegram', icon: <FaTelegramPlane className="text-lg" /> },
+    { value: 'whatsapp', label: 'WhatsApp', icon: <FaWhatsapp className="text-lg" /> },
+  ];
 
   const validateForm = () => {
     const newErrors = {};
@@ -42,6 +62,7 @@ const ContactForm = () => {
     if (!formData.mathAnswer || parseInt(formData.mathAnswer) !== mathQuestion.answer) {
       newErrors.mathAnswer = 'Неверный ответ на вопрос. Попробуйте снова.';
     }
+    // Removed required validation for preferredContact, date, and timeRange
     return newErrors;
   };
 
@@ -77,6 +98,12 @@ const ContactForm = () => {
         throw new Error('EmailJS environment variables are not defined. Check your .env file.');
       }
 
+      // Use default values if fields are not selected
+      const formattedDate = selectedDate ? selectedDate.toLocaleDateString('ru-RU') : 'не имеет значения';
+      const timeRange = selectedTimeRange || 'не имеет значения';
+
+      const enhancedMessage = `${formData.message}\n\nPreferred Contact Method: ${formData.preferredContact}\nPreferred Date: ${formattedDate}\nPreferred Time Range: ${timeRange}`;
+
       const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: {
@@ -90,8 +117,7 @@ const ContactForm = () => {
             from_name: formData.name,
             from_email: formData.email,
             phone: formData.phone,
-            message: formData.message,
-            // Removed to_email; EmailJS will use the recipient set in the template
+            message: enhancedMessage,
           },
         }),
       });
@@ -104,7 +130,9 @@ const ContactForm = () => {
       const result = await response.text();
       console.log('Email sent successfully:', result);
       alert('Сообщение успешно отправлено! Мы свяжемся с вами скоро.');
-      setFormData({ name: '', email: '', phone: '', message: '', honeypot: '', mathAnswer: '' });
+      setFormData({ name: '', email: '', phone: '', message: '', honeypot: '', mathAnswer: '', preferredContact: 'email' });
+      setSelectedDate(null);
+      setSelectedTimeRange('');
       setErrors({});
       const num1 = Math.floor(Math.random() * 10) + 1;
       const num2 = Math.floor(Math.random() * 10) + 1;
@@ -138,7 +166,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">Свяжитесь с нами</h2>
         <p className="text-gray-700 mb-8">
@@ -197,6 +225,97 @@ const ContactForm = () => {
               placeholder="+7 123 456 7890"
             />
             {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Предпочитаемый способ связи (опционально)
+            </label>
+            <div className="sm:flex sm:flex-nowrap sm:divide-x sm:divide-gray-300 sm:border sm:rounded-md sm:overflow-hidden grid grid-cols-2 gap-2">
+              {contactMethods.map((method, index) => (
+                <label
+                  key={method.value}
+                  className={`flex items-center justify-center px-4 py-2 border-gray-300 cursor-pointer transition-colors duration-200 sm:flex-1 sm:min-w-0 ${
+                    formData.preferredContact === method.value
+                      ? 'bg-blue-100 border-blue-500'
+                      : 'bg-white hover:bg-blue-50'
+                  } ${
+                    index === 0 && 'sm:rounded-l-md'
+                  } ${
+                    index === contactMethods.length - 1 && 'sm:rounded-r-md'
+                  } sm:border-0`}
+                >
+                  <input
+                    type="radio"
+                    name="preferredContact"
+                    value={method.value}
+                    checked={formData.preferredContact === method.value}
+                    onChange={handleChange}
+                    className="sr-only"
+                  />
+                  <div className="flex items-center justify-center space-x-2 sm:space-x-2">
+                    {method.icon}
+                    <span className="text-sm text-gray-700 hidden sm:inline">{method.label}</span>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Предпочитаемая дата (опционально)
+            </label>
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => {
+                setSelectedDate(date);
+                if (errors.date) setErrors((prev) => ({ ...prev, date: '' }));
+              }}
+              dateFormat="dd/MM/yyyy"
+              minDate={new Date()}
+              className={`mt-1 block w-full px-3 py-2 border ${
+                errors.date ? 'border-red-500' : 'border-gray-300'
+              } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
+              placeholderText="Выберите дату"
+            />
+            {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Предпочитаемый временной диапазон (опционально)
+            </label>
+            <div className="sm:flex sm:flex-nowrap sm:divide-x sm:divide-gray-300 sm:border sm:rounded-md sm:overflow-hidden flex flex-wrap">
+              {timeRanges.map((range, index) => (
+                <label
+                  key={range}
+                  className={`flex items-center justify-center px-4 py-2 border-gray-300 cursor-pointer transition-colors duration-200 ${
+                    selectedTimeRange === range
+                      ? 'bg-blue-100 border-blue-500'
+                      : 'bg-white hover:bg-blue-50'
+                  } ${
+                    index === 0 && 'sm:rounded-l-md'
+                  } ${
+                    index === timeRanges.length - 1 && 'sm:rounded-r-md'
+                  } sm:border-0 flex-1 text-center sm:min-w-0 min-w-[150px]`}
+                >
+                  <input
+                    type="radio"
+                    name="timeRange"
+                    value={range}
+                    checked={selectedTimeRange === range}
+                    onChange={(e) => {
+                      setSelectedTimeRange(e.target.value);
+                      if (errors.timeRange) setErrors((prev) => ({ ...prev, timeRange: '' }));
+                    }}
+                    className="sr-only"
+                  />
+                  <span className="text-sm text-gray-700">{range}</span>
+                </label>
+              ))}
+            </div>
+            {errors.timeRange && <p className="mt-2 text-sm text-red-600">{errors.timeRange}</p>}
           </div>
 
           <div>
