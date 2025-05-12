@@ -1,6 +1,32 @@
 {
     "resources": [
-       
+        {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/property_sale.webp",
+            "resource_type": "image",
+            "object_type": "general"
+          },
+
+        {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_1.jpg",
+            "resource_type": "image",
+            "object_type": "room_3"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_2.jpg",
+            "resource_type": "image",
+            "object_type": "room_3"
+          },
+
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_3.jpg",
+            "resource_type": "image",
+            "object_type": "room_3"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/video_entrance.mp4",
+            "resource_type": "video",
+            "object_type": "entrance"
+          },
     
         {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/entrance_1.jpg",
@@ -14,11 +40,7 @@
             "resource_type": "image",
             "object_type": "entrance"
           },
-          {
-            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/lift_1.jpg",
-            "resource_type": "image",
-            "object_type": "entrance"
-          },
+    
 
           {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_2_1.jpg",
@@ -57,22 +79,8 @@
             "resource_type": "image",
             "object_type": "room_2"
           },
-          {
-            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_1.jpg",
-            "resource_type": "image",
-            "object_type": "room_3"
-          },
-          {
-            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_2.jpg",
-            "resource_type": "image",
-            "object_type": "room_3"
-          },
+  
 
-          {
-            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_3_3.jpg",
-            "resource_type": "image",
-            "object_type": "room_3"
-          },
           {
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/room_1_1.jpg",
             "resource_type": "image",
@@ -88,9 +96,10 @@
             "resource_type": "image",
             "object_type": "room_4"
           },
+
           {
-            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/video_entrance.mp4",
-            "resource_type": "video",
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/lift_1.jpg",
+            "resource_type": "image",
             "object_type": "entrance"
           },
           {
@@ -107,6 +116,11 @@
             "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/video_room_1_room_2.mp4",
             "resource_type": "video",
             "object_type": "room_2"
+          },
+          {
+            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/property_thumbnail.webp",
+            "resource_type": "image",
+            "object_type": "general"
           }
    
     ]
