@@ -275,12 +275,7 @@ function App() {
                 postalCode: '220114',
                 addressCountry: 'BY',
               },
-              floorArea: { // Changed from floorSize to floorArea
-                '@type': 'QuantitativeValue',
-                value: 102,
-                unitCode: 'SQM',
-                unitText: 'square meters',
-              },
+              
             },
           })}
         </script>
