@@ -246,9 +246,9 @@ function App() {
             description:
               'Видео премиум коммерческого помещения 102 м² с отдельным входом в Минске, Маяк Минска.',
             thumbnailUrl:
-              'https://res.cloudinary.com/dzagcqrbp/image/upload/fdnaj1skiohqpipsibbz.jpg',
+              'https://minsksalonspace.com/images/property_thumbnail.webp',
             contentUrl:
-              'https://res.cloudinary.com/dzagcqrbp/video/upload/bmovy3i3i43kts5wa11u.mp4',
+              'https://codedharmony.blob.core.windows.net/mstislavca/video_overview_main.mp4',
             uploadDate: '2025-05-10',
           })}
         </script>
