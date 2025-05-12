@@ -244,6 +244,46 @@ function App() {
             },
           })}
         </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Offer',
+            name: 'Салонное помещение 102 м², Петра Мстиславца 1, Минск',
+            description:
+              'Элитное помещение для салона красоты, офиса или практики в центре Минска, Маяк Минска. Площадь 102 м², цена: $2200/м².',
+            url: currentUrl,
+            businessFunction: 'http://purl.org/goodrelations/v1#Sell', // Indicates this is a sale offer
+            price: 224400,
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            seller: {
+              '@type': 'Person',
+              name: 'Прямая продажа от собственника',
+              description: 'Собственник недвижимости',
+            },
+            itemOffered: {
+              '@type': 'Place', // Using Place to represent the property
+              name: 'Салонное помещение на Петра Мстиславца 1',
+              description:
+                'Элитное коммерческое помещение в центре Минска, Маяк Минска, идеально подходящее для салона красоты.',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Петра Мстиславца 1-121',
+                addressLocality: 'Минск',
+                addressRegion: 'Минская область',
+                postalCode: '220114',
+                addressCountry: 'BY',
+              },
+              floorArea: { // Changed from floorSize to floorArea
+                '@type': 'QuantitativeValue',
+                value: 102,
+                unitCode: 'SQM',
+                unitText: 'square meters',
+              },
+            },
+          })}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
