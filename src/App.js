@@ -192,7 +192,7 @@ function App() {
         <meta property="og:url" content={currentUrl} />
         <meta
           property="og:image"
-          content={`${currentUrl}/images/property.jpg`}
+          content={`${currentUrl}/images/property_sale.webp`}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -205,7 +205,7 @@ function App() {
         />
         <meta
           name="twitter:image"
-          content={`${currentUrl}/images/property.jpg`}
+          content={`${currentUrl}/images/property_sale.webp`}
         />
         <script type="application/ld+json">
           {JSON.stringify({
