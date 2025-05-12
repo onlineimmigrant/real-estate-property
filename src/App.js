@@ -164,7 +164,7 @@ function App() {
     },
   ];
 
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://example.com';
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://minsksalonspace.com';
 
   return (
     <div className="bg-gray-50 font-sans">
@@ -192,7 +192,7 @@ function App() {
         <meta property="og:url" content={currentUrl} />
         <meta
           property="og:image"
-          content={`${currentUrl}/images/property_sale.webp`}
+          content={`${currentUrl}images/property_sale.webp`}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -205,7 +205,7 @@ function App() {
         />
         <meta
           name="twitter:image"
-          content={`${currentUrl}/images/property_sale.webp`}
+          content={`${currentUrl}images/property_sale.webp`}
         />
         <script type="application/ld+json">
           {JSON.stringify({
