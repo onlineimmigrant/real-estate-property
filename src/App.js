@@ -168,72 +168,78 @@ function App() {
 
   return (
     <div className="bg-gray-50 font-sans">
-      <Helmet>
-        <title>Премиум недвижимость в Минске | Петра Мстиславца 1</title>
+  <Helmet>
+        <title>Салонное помещение в Минске | МинскСалонСпейс</title>
         <meta
           name="description"
-          content="Премиум помещение 102 м² с отдельным входом для салона, офиса или практики в центре Минска, Маяк Минска. Цена: $2200/м²."
+          content="Премиум салонное помещение 102 м² с отдельным входом в центре Минска, Маяк Минска. Идеально для салона красоты, офиса или практики. Цена: $2200/м²."
         />
         <meta
           name="keywords"
-          content="премиум недвижимость Минск, Петра Мстиславца 1, салон красоты, офис, Маяк Минска, коммерческая недвижимость"
+          content="салонное помещение Минск, Минск салон спейс, Петра Мстиславца 1, салон красоты, коммерческая недвижимость, Маяк Минска"
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={currentUrl} />
         <meta
           property="og:title"
-          content="Премиум коммерческое помещение 102 м² в Минске"
+          content="Премиум салонное помещение 102 м² в Минске | МинскСалонСпейс"
         />
         <meta
           property="og:description"
-          content="Помещение с отдельным входом для салона, офиса или врачебной практики в элитном районе Минска, Маяк Минска. Цена: $2200/м²."
+          content="Элитное помещение для салона красоты, офиса или практики в центре Минска, Маяк Минска. Площадь 102 м², цена: $2200/м²."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={currentUrl} />
         <meta
           property="og:image"
-          content={`${currentUrl}images/property_sale.webp`}
+          content="https://minsksalonspace.com/images/property_sale.webp"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Премиум помещение 102 м² в Минске"
+          content="Салонное помещение 102 м² в Минске | МинскСалонСпейс"
         />
         <meta
           name="twitter:description"
-          content="Элитное помещение для бизнеса в центре Минска, Маяк Минска. Цена: $2200/м²."
+          content="Элитное помещение для салона красоты в центре Минска, Маяк Минска. Площадь 102 м², цена: $2200/м²."
         />
         <meta
           name="twitter:image"
-          content={`${currentUrl}images/property_sale.webp`}
+          content="https://minsksalonspace.com/images/property_sale.webp"
         />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'RealEstateListing',
-            name: 'Премиум коммерческое помещение 102 м², Петра Мстиславца 1, Минск',
+            name: 'Салонное помещение 102 м², Петра Мстиславца 1, Минск',
             description:
-              'Премиум помещение с отдельным входом для салона красоты, услуг, офиса или врачебной практики в элитном районе Минска, Маяк Минска. Цена: $2200/м².',
+              'Элитное помещение для салона красоты, офиса или практики в центре Минска, Маяк Минска. Площадь 102 м², цена: $2200/м².',
+            url: currentUrl, // Added required url field
+            datePosted: '2025-05-10', // Added required datePosted field
             address: {
               '@type': 'PostalAddress',
               streetAddress: 'Петра Мстиславца 1-121',
-              addressLocality: 'Минск, Беларусь',
+              addressLocality: 'Минск',
+              addressRegion: 'Минская область', // Added for clarity
               postalCode: '220114',
               addressCountry: 'BY',
             },
             floorSize: {
               '@type': 'QuantitativeValue',
               value: 102,
-              unitCode: 'MTK',
+              unitCode: 'SQM', // Updated to correct unitCode (SQM for square meters)
+              unitText: 'square meters', // Added for clarity
             },
             offers: {
               '@type': 'Offer',
               price: 224400,
               priceCurrency: 'USD',
-              availability: 'https://schema.org/InStock',
+              availability: 'InStock', // Simplified to a string value
+              url: currentUrl, // Added url to the offer
               seller: {
                 '@type': 'Person',
                 name: 'Прямая продажа от собственника',
+                description: 'Собственник недвижимости', // Added for clarity
               },
             },
           })}
@@ -242,28 +248,41 @@ function App() {
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'VideoObject',
-            name: 'Тур по помещению на Петра Мстиславца 1, Минск',
+            name: 'Тур по салонному помещению на Петра Мстиславца 1, Минск',
             description:
-              'Видео премиум коммерческого помещения 102 м² с отдельным входом в Минске, Маяк Минска.',
+              'Видео элитного салонного помещения 102 м² с отдельным входом в Минске, Маяк Минска.',
             thumbnailUrl:
               'https://minsksalonspace.com/images/property_thumbnail.webp',
             contentUrl:
               'https://codedharmony.blob.core.windows.net/mstislavca/video_overview_main.mp4',
-            uploadDate: '2025-05-10',
+            embedUrl:
+              'https://codedharmony.blob.core.windows.net/mstislavca/video_overview_main.mp4', // Added embedUrl
+            uploadDate: '2025-05-10T08:00:00Z', // Updated to full ISO 8601 format
+            duration: 'PT2M30S', // Added duration (e.g., 2 minutes 30 seconds)
+            publisher: {
+              '@type': 'Organization',
+              name: 'МинскСалонСпейс',
+              url: 'https://minsksalonspace.com',
+            }, // Added publisher
           })}
         </script>
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'ImageGallery',
-            name: 'Галерея помещения на Петра Мстиславца 1',
-            description: 'Изображения премиум коммерческого помещения в Минске.',
+            '@type': 'ItemList', // Changed to ItemList for a gallery
+            name: 'Галерея салонного помещения на Петра Мстиславца 1',
+            description: 'Изображения элитного салонного помещения в Минске.',
+            url: `${currentUrl}#gallery`, // Added URL to the gallery section
+            numberOfItems: images.length, // Added number of items
             itemListElement: images.map((image, index) => ({
-              '@type': 'ImageObject',
+              '@type': 'ListItem',
               position: index + 1,
-              url: cld.image(image.public_id).quality('auto').toURL(),
-              name: `Изображение помещения ${index + 1}`,
-              description: `Интерьер помещения на Петра Мстиславца 1, Минск, изображение ${index + 1}`,
+              item: {
+                '@type': 'ImageObject',
+                contentUrl: cld.image(image.public_id).quality('auto').toURL(), // Changed to contentUrl
+                name: `Изображение салонного помещения ${index + 1}`,
+                description: `Интерьер салонного помещения на Петра Мстиславца 1, Минск, изображение ${index + 1}`,
+              },
             })),
           })}
         </script>
