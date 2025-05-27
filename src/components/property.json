@@ -108,7 +108,7 @@
             "object_type": "entrance"
           },
           {
-            "public_id": "https://codedharmony.blob.core.windows.net/mstislavca/video_overview_main.mp4",
+            "public_id": "/images/overview_video.mp4",
             "resource_type": "video",
             "object_type": "general"
           },

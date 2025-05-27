@@ -28,7 +28,7 @@ function VideoModal({ isOpen, onClose, videoError, handleVideoError, videoPublic
         ) : isThirdPartyUrl(videoPublicId) ? (
           <video
             controls
-            className="w-full sm:w-auto h-auto sm:h-128 rounded"
+            className="w-full sm:w-auto h-auto sm:h-[640px] rounded"
             autoPlay
             poster={isThirdPartyUrl(posterPublicId) ? posterPublicId : cld.image(posterPublicId).quality('auto').toURL()}
             onError={handleVideoError}

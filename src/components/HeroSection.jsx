@@ -22,8 +22,9 @@ function HeroSection({ showHero, showButtons, openSlider, scrollToGallery }) {
     setVideoError('Не удалось загрузить видео. Пожалуйста, попробуйте позже.');
   };
 
+  const localHost = process.env.LOCAL_HOST
   // Define video and poster public IDs (these could come from props or a config)
-  const videoPublicId = 'https://codedharmony.blob.core.windows.net/mstislavca/video_overview_main.mp4'; // Could be a third-party URL like 'https://example.com/video.mp4'
+  const videoPublicId = 'https://minsksalonspace.com/images/overview_video.mp4'; // Could be a third-party URL like 'https://example.com/video.mp4'
   const posterPublicId = 'fdnaj1skiohqpipsibbz'; // Could be a third-party URL like 'https://example.com/poster.jpg'
 
   return (
