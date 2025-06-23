@@ -4,25 +4,25 @@ import HeroImage from '../real_estate_hero.svg';
 function Header({ showNavbar, resetToStart, scrollToGallery }) {
   return (
     <header
-      className={`bg-gray-800/90 backdrop-blur-md text-white py-4 transition-opacity duration-500 ${
-        showNavbar ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      className={`bg-white shadow-md text-gray-800 py-4 transition ${
+        showNavbar ? 'opacity-100' : 'none'
       }`}
       style={{ position: 'sticky', top: 0, zIndex: 20 }}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
+      <div className="container mx-auto px-20 flex items-center">
         <a href="#start" onClick={resetToStart}>
-          <Image
+          <img
             src={HeroImage}
-            className="w-14 h-14 object-contain"
+            className="w-20 h-20 object-contain"
             alt="Logo"
             loading="lazy"
           />
         </a>
-        <nav className="flex space-x-6">
+        <nav className="flex items-center justify-center space-x-20">
           <a
             href="#start"
             onClick={resetToStart}
-            className="text-teal-100 hover:text-teal-300 transition-colors"
+            className="text-teal-600 hover:text-teal-800 transition-colors font-semibold"
           >
             Старт
           </a>
@@ -32,7 +32,7 @@ function Header({ showNavbar, resetToStart, scrollToGallery }) {
               e.preventDefault();
               scrollToGallery();
             }}
-            className="text-teal-100 hover:text-teal-300 transition-colors"
+            className="text-teal-600 hover:text-teal-800 transition-colors font-semibold"
           >
             Медиа
           </a>

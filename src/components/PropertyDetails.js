@@ -40,9 +40,7 @@ function PropertyDetails() {
         <h3 id="price-heading" className="text-2xl font-semibold text-gray-900 mb-6">
           Стоимость
         </h3>
-        
           <PriceDeclaration />
-        
       </section>
 
       {/* Map Section */}
