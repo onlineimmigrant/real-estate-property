@@ -11,7 +11,7 @@ function Header({ showNavbar, resetToStart, scrollToGallery }) {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <a href="#start" onClick={resetToStart}>
-          <img
+          <Image
             src={HeroImage}
             className="w-14 h-14 object-contain"
             alt="Logo"
